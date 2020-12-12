@@ -1,0 +1,127 @@
+ body
+ {
+ 	background-color: #B4B4B4;
+ }
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+.header-first{
+	background-color: #EAEAEA;
+}
+#btnOpciones,#btnEliminar{
+	cursor: pointer;
+}
+.estatus-uni{
+	padding: 0px;
+	height: 2rem;
+}
+
+.btn-hover:hover
+{
+	color: #fff;
+    background-color: #da84b4 !important;
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+.nm-uni{
+	    font-size: 18px;
+    line-height: 24px;
+    margin: 0 0 15px 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    color: #444;
+    text-transform: none;
+}
+
+#mod1{
+      overflow-y: scroll;
+      /*height: 100%;*/
+    }
+    #mod1::-webkit-scrollbar-track, #mod1::-webkit-scrollbar-track {
+      background-color: #f0f0f0;
+    }
+    #mod1::-webkit-scrollbar-thumb, #mod1::-webkit-scrollbar-thumb {
+      background-color: #888;
+    }
+    #mod1::-webkit-scrollbar, #mod1::-webkit-scrollbar {
+    width: 6px;
+    }
+
+    #mod2{
+      overflow-y: scroll !important;
+      height: 100% !important;
+    }
+    #mod2::-webkit-scrollbar-track, #mod2::-webkit-scrollbar-track {
+      background-color: #f0f0f0 !important;
+    }
+    #mod2::-webkit-scrollbar-thumb, #mod2::-webkit-scrollbar-thumb {
+      background-color: #888 !important;
+    }
+    #mod2::-webkit-scrollbar, #mod2::-webkit-scrollbar {
+    width: 6px !important;
+    }
+
+
+  .procesando-layer
+  {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    margin-left: 0%;
+    margin-top: -26px;
+    text-align: center;
+    padding: 1em 0;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button
+  {
+    padding: 0em !important;
+  }
+
+  table.dataTable.no-footer{
+    border:none !important;
+  }
+
+ /* .table-responsive
+  {
+    overflow-y: unset !important;
+  }*/
+
+  table.dataTable thead th, table.dataTable thead td{
+    border-bottom: 1px solid #d0d0d0 !important;
+  }
+
+  .select-wrapper input.select-dropdown
+  {
+  	display: none !important;
+  }
+
+  .select-wrapper span.caret
+  {
+  	display: none !important;
+  }
+
+  #alertas_length{
+  	width: 50% !important;
+  	float: left !important;
+  }
+
+  #alertas_filter{
+  	width: 50% !important;
+  	float: right !important;
+  }
+
+/*  .uk-table td, .uk-table th
+  {
+    padding: 4px 0px !important;
+  }*/
+
+#alertas_wrapper{
+  padding-top: 20px;
+}

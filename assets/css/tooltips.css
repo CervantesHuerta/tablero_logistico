@@ -1,0 +1,66 @@
+	.tooltips{
+   			display: inline;
+    		position: relative;
+			cursor:pointer;
+		}
+		
+		.tooltips:hover:after{
+    		background: #333;
+    		background: rgba(0,0,0,.7);
+    		border-radius: 3px;
+    		bottom: 26px;
+    		color: #fff;
+    		content: attr(data-original-title);
+    		left: 0%;
+    		padding: 5px 15px;
+    		position: absolute;
+    		z-index: 9999999999;
+    		width: 155px;
+			text-align:center;
+		}
+		
+		.tooltips:hover:before{
+    		border: solid;
+    		border-color: #333 transparent;
+    		border-width: 6px 6px 0 6px;
+    		bottom: 20px;
+    		content: "";
+    		left: 50%;
+    		position: absolute;
+    		z-index: 99;
+		}
+
+
+		.tooltips1{
+   			display: inline;
+    		position: relative;
+			cursor:pointer;
+
+		}
+		
+		.tooltips1:hover:after{
+    		background: #333;
+    		background: rgba(0,0,0,.7);
+    		border-radius: 5px;
+    		bottom: 26px;
+    		color: #fff;
+    		content: attr(data-original-title);
+    		right: 0%;
+    		padding: 2px 5px;
+    		position: absolute;
+    		z-index: 9999999999;
+    		width: 75px;
+			text-align:center;
+		}
+		
+		.tooltips1:hover:before{
+    		border: solid;
+    		border-color: #333 transparent;
+    		border-width: 6px 6px 0 6px;
+    		bottom: 20px;
+    		content: "";
+    		left: 0%;
+    		position: absolute;
+    		z-index: 99999999;
+		}
+	

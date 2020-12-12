@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Saktesi | Administrativo</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta charset="UTF-8">
+		<link rel="shortcut icon" href="assets/images/favicon.ico">
+		<meta name="description" content="Somos especialistas en soluciones telemáticas, exactitud en control, generando ahorro en León Guanajuato.">
+		<meta name="keywords" content="rastreo, global, gps, soluciones, ahorro, sensores, combustible, temperatura, monitoreo, posicionamiento">
+        <meta name="author" content="SANGAR" />
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+		<link href="assets/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet"/>
+        <link href="assets/plugins/uniform/css/uniform.default.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/metrojs/MetroJs.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/css/modern.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/color.css" class="theme-color" rel="stylesheet" type="text/css"/>
+
+
+    </head>
+    <body class="page-header-fixed compact-menu page-sidebar-fixed" >
+        <div class="overlay"></div>
+    
+		<div class="menu-wrap">
+            <nav class="profile-menu">
+                <div class="profile"><img src="assets/images/avatarah.jpg" width="52" alt="Oscar Segovia"/><span>Oscar Segovia</span></div>
+                <div class="profile-menu-list">
+					<a href="?clsCerrar"><i class="fa fa-lock"></i><span>Salir</span></a>                 
+                </div>
+            </nav>
+            <button class="close-button" id="close-button"></button>
+        </div>
+        <form class="search-form" action="#" method="GET">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control search-input" placeholder="Buscar">
+                <span class="input-group-btn">
+                    <button class="btn btn-default close-search waves-effect waves-button waves-classic" type="button"><i class="fa fa-times"></i></button>
+                </span>
+            </div>
+        </form>
+        <main class="page-content content-wrap">
+            <div style="" class="navbar">
+                <div class="navbar-inner">
+                    <div class="sidebar-pusher">
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic push-sidebar">
+                            <i style="color:#690965;" class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                    <div style=""  class="logo-box">
+                        <a href="../profile/" style="color:#690965;" class="logo-text"><span>SAKTESI</span></a>
+                    </div>
+                    <div style=""  class="topmenu-outer">
+                        <div class="top-menu">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li>		
+                                    <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
+                                </li>
+                               
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                       
+                                <li class="dropdown">
+								    <a href="#" id="clickcount" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-bell"></i><span id="count_notifi" class="badge badge-success pull-right">0</span></a>
+                                    <ul class="dropdown-menu title-caret dropdown-lg" style="width: 380px;" role="menu">
+                                        <li><p class="drop-title">Notificaciones</p></li>
+                                        <li class="dropdown-menu-list slimscroll tasks">
+                                            <ul id="update_noti" class="list-unstyled">
+												 <li class='text-center' ><a>No tiene notificaciones </a></li>                                               
+                                            </ul>
+                                        </li>
+                                        <li data-toggle="modal" data-target="#myModalnoti" id="show-allnotifi" class="drop-all"><a href="#" class="text-center">Todas las Notificaciones</a></li>
+                                    </ul>
+								</li>
+								
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                                        <span class="user-name">Oscar Segovia<i class="fa fa-angle-down"></i></span>
+                                        <img class="avatar" src="assets/images/avatarah.jpg" width="40" height="45" alt="">
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-list" role="menu">
+                                    	<li role="presentation" class="divider"></li>
+                                        <li role="presentation"><a href="?clsCerrar"><i class="fa fa-sign-out m-r-xs"></i>Salir</a></li>
+                                    </ul>
+                                </li>
+                                
+                             
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  class="page-sidebar sidebar" >
+                <div  class="page-sidebar-inner ">
+                    <div   class="sidebar-header">
+                        <div class="sidebar-profile">
+                            <a href="javascript:void(0);" id="profile-menu-link">
+                                <div class="sidebar-profile-image">
+                                    <img src="assets/images/logo.png" class="img-circle img-responsive" alt="">
+                                </div>
+                                <div class="sidebar-profile-details">
+                                    <span>Oscar Segovia<br><small>Administrador</small></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+					<div id="menu_sticky"  >
+						<ul style="min-height:400px; color:white!important;" class="menu accordion-menu">
+							<li  ><a href="../profile/" class="waves-effect waves-button"><span class="menu-icon glyphicon fa fa-home"></span><p>INICIO</p></a></li> 
+							<li class="droplink"><a href="#"  class="waves-effect waves-button"><span class="menu-icon glyphicon fa fa-database"></span><p>Almacen</p><span class="arrow"></span></a>
+								<ul class="sub-menu"><li ><a class="" href="?activos/">Activos</a></li><li ><a class="" href="?almacen/">Productos</a></li><li ><a class="" href="?consultar_granel">Granel</a></li></ul>
+							</li> 
+							<li class="droplink"><a href="#"  class="waves-effect waves-button"><span class="menu-icon glyphicon fa fa-user"></span><p>Clientes</p><span class="arrow"></span></a>
+								<ul class="sub-menu"><li ><a class="" href="?clientes/">Consultar</a></li><li ><a class="" href="?clientes_facturas/">Facturas</a></li></ul>
+							</li> 
+						
+							<li class="droplink"><a href="#"  class="waves-effect waves-button"><span class="menu-icon glyphicon fa fa-university"></span><p>Bancos</p><span class="arrow"></span></a>
+								<ul class="sub-menu"><li ><a class="" href="?bancos/">Mostrar</a></li></ul>
+							</li> 
+							<li class="droplink active open"><a href="#"  class="waves-effect waves-button"><span class="menu-icon glyphicon fa fa-connectdevelop"></span><p>Apps</p><span class="arrow"></span></a>
+								<ul class="sub-menu"><li class="active"><a class="" href="?estcarriers/">EST</a></li><li ><a class="reenviopap" href="#">PAP</a></li><li ><a class="reenvioplat" href="#">Plataforma</a></li><li ><a class="reenviocms" href="#">CMS</a></li></ul>
+							</li>			  
+	   
+						</ul>
+					</div>
+                </div>
+            </div>
+			
+            <div class="page-inner">  
+				<div class="page-title">
+                    <h3>Estcarriers</h3>
+                    <div class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="#">Apps</a></li>
+                            <li class="active">Estcarriers</li>
+                        </ol>
+                    </div>
+                </div>
+                <div id="main-wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-white">
+                           
+							</div>
+						</div>
+					</div>
+				</div>
+	
+	
+				<div class="page-footer">
+					<p class="no-s">2018 &copy; Saktesi.</p>
+				</div>
+            </div>
+		
+        </main>
+		<script src="assets/plugins/jquery/jquery-2.1.3.min.js"></script>
+		<script src="assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
+		<script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="assets/plugins/switchery/switchery.min.js"></script>
+		<script src="assets/plugins/uniform/jquery.uniform.min.js"></script>
+		<script src="assets/plugins/offcanvasmenueffects/js/classie.js"></script>
+		<script src="assets/plugins/offcanvasmenueffects/js/main.js"></script>
+		<script src="assets/plugins/waves/waves.min.js"></script>
+		<script src="assets/plugins/3d-bold-navigation/js/main.js"></script>
+		<script src="assets/js/modern.js"></script>
+
+        
+    </body>
+</html>

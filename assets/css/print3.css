@@ -1,0 +1,30 @@
+.none-print{
+	display:none;
+}
+
+.uk-width-1-2{
+	display:none;
+}
+.head4{
+	width:50%!important;
+	float:left;
+}
+.head5{
+	width:45%!important;
+	float:left;
+}
+.iameg{
+	width:100px!important;
+}
+#tamanio_org{
+	width: 20px!important;
+}
+
+#logot{
+	width: 60px!important;
+}
+
+#header-poliza
+{
+	margin-top: 240px !important;
+}
