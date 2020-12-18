@@ -18,5 +18,13 @@ class mostrar extends Modelo
             }
             return $a;
         }
+
+       /*  public function save_response($response)
+        {
+            $qr = "INSERT INTO cydsacoc_punto4.tbl_responses VALUES (NULL,'$response',now())";
+            echo $qr;
+            $this->_conn->query($qr);
+
+        } */
     }
 
