@@ -10,9 +10,12 @@ class mostrar extends Modelo
         public function getTravelClass($id_cliente,$from,$to)
         {
             $qr = "SELECT * FROM tbl_rutas_activas WHERE fecha_fin between '$from' AND '$to' AND id_creador = $id_cliente";
-            
-            $result = $this->_db->query($qr);
-            return mysqli_fetch_assoc($result);
+            $a=[];
+            $result = $this->_conn->query($qr);
+            while ($rw = mysqli_fetch_assoc($result)) {
+                $a[]=$rw;
+            }
+            return $a;
         }
     }
 
