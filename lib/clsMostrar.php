@@ -58,16 +58,115 @@ class mostrar extends Modelo
           //die($qr);
           $result = $this->_db->query($qr);
          $a=[];
+         $x=0;
+         $units = [];
          while ($r =  mysqli_fetch_assoc($result)) {
              $id=$r['id_cliente'];
             $qrr = "SELECT * FROM tbl_unidades WHERE id_cliente =$id ;";
             $rt = $this->_db->query($qrr);
             while ($rr =mysqli_fetch_assoc($rt)) {
-                $a[]=$rr;
-                //falta clasificar las unidades de acuerdo al status que tienen.
+                if ($rr['id_status']==0) {
+                    $a[$x]['id_unidad']=$rr['id_unidad'];
+                    $a[$x]['nombre_unidad']=$rr['nombre'];
+                    $x++;
+                    }
+                }
+            }        
+        return $a;
+        }
+
+        public function getUnitsNumbers($id_cliente)
+        {
+            $qr = "SELECT * FROM tbl_clienteplataforma WHERE id_login = $id_cliente";
+            //die($qr);
+            $result = $this->_db->query($qr);
+           $a=[];
+           $x=0;
+           $units = [];
+           $nd=0;
+           while ($r =  mysqli_fetch_assoc($result)) {
+               $id=$r['id_cliente'];
+              $qrr = "SELECT * FROM tbl_unidades WHERE id_cliente =$id ;";
+              //die($qrr);
+              $rt = $this->_db->query($qrr);
+              while ($rr =mysqli_fetch_assoc($rt)) {
+                  if ($rr['id_status']==0) {
+                  $a[$x]['id_unidad']=$rr['id_unidad'];
+                  $a[$x]['nombre_unidad']=$rr['nombre'];
+                  $x++;
+                  }else{
+                      $nd++;
+                  }
+                  
+                  //falta clasificar las unidades de acuerdo al status que tienen.
+              }
+           }
+          $query= "SELECT count(*)as total FROM cydsacoc_punto4.tbl_rutas_activas WHERE id_creador =$id_cliente AND id_estatus = 1";
+          $rst = $this->_conn->query($query);
+          $data = mysqli_fetch_assoc($rst);
+  
+          
+          
+          $units['en_ruta']= (float)$data['total'];
+          $units['total']= count($a)+$nd;
+          $units['disponibles']= count($a)-$units['en_ruta'];
+          $units['no_disponibles']=$nd;
+           
+          return $units;
+          }
+        
+        public function get_week()
+        {
+            $semana=[];
+            $monday = strtotime("last monday");
+            $monday = date('w', $monday)==date('w') ? $monday+7*86400 : $monday;
+            $sunday = strtotime(date("Y-m-d",$monday)." +6 days");
+            $this_week_sd = date("Y-m-d 00:00:00",$monday);
+            $this_week_ed = date("Y-m-d 23:59:59",$sunday);
+            $semana['inicio']=date("Y-m-d",$monday);
+            $semana['fin']=date("Y-m-d",$sunday);
+            return $semana;
+
+        }
+
+        public function getMonth()
+        {
+            $dt =time();
+            $a= array (
+                "start" => date ('Y-m-d 00:00:00', strtotime ('first day of this month', $dt)),
+                "end" => date ('Y-m-d 23:59:59', strtotime ('last day of this month', $dt))
+            );
+
+            return $a;
+        }
+
+
+        public function getStatics($id_cliente,$from=0,$to=0,$int)
+        {
+            switch ($int) {
+                case 'd':
+                    $ini = date('Y-m-d 00:00:00');
+                    $fin = date('Y-m-d 23:59:59');
+                    $travels = $this->getTravelClass($id_cliente,$ini,$fin);
+                    return $travels;
+                    break;
+                case 'm':
+                    $month = $this->getMonth();
+                    $travels = $this->getTravelClass($id_cliente,$month['start'],$month['end']);
+                    return $travels;
+                    break;
+                case 'w':
+                    $week=$this->get_week();
+                    $travels = $this->getTravelClass($id_cliente,$week['inicio'],$week['fin']);
+                    return $travels;
+                    break;
+                case 'def':
+                    $travels = $this->getTravelClass($id_cliente,$from,$to);
+                    return $travels;
+                    break;
+                
+                    
             }
-         }
-         return $a;
         }
 
        /*  public function save_response($response)
