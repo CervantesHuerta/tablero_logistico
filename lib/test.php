@@ -12,8 +12,8 @@
 
    /*  $units = $cl->getUnitsData(10142);
     echo json_encode($units); */
-    /* $units = $cl->getUnitsNumbers(10142);
-    echo json_encode($units); */
+    $units = $cl->getUnitsNumbers(10142);
+    echo json_encode($units);
 
     /* estadísticas de rutas por dia, semana, mes e intérvalo definido */
 
@@ -22,5 +22,8 @@
 
     /* $statistics = $cl->getStatics(10142,'2019-01-14 07:25:11','2020-12-23 07:25:11','def');
     echo json_encode($statistics); */
+
+
+
 
 ?>

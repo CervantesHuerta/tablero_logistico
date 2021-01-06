@@ -111,6 +111,12 @@ class mostrar extends Modelo
           $units['total']= count($a)+$nd;
           $units['disponibles']= count($a)-$units['en_ruta'];
           $units['no_disponibles']=$nd;
+
+          $units['percent_en_ruta']=($units['en_ruta']==0)?0:round($units['en_ruta']*100/$units['total'],2);
+          
+          $units['percent_disponibles']=round($units['disponibles']*100/$units['total'],2);
+          
+          $units['percent_no_disponibles']=round($units['no_disponibles']*100/$units['total'],2);
            
           return $units;
           }
@@ -168,6 +174,13 @@ class mostrar extends Modelo
                     
             }
         }
+
+        public function getFleetUsage ($id_cliente,$from,$to)
+        {
+            # code...
+        }
+
+
 
        /*  public function save_response($response)
         {
