@@ -147,14 +147,44 @@ class mostrar extends Modelo
         }
 
 
-        public function getStatics($id_cliente,$from=0,$to=0,$int)
+        public function getStatics($id_cliente,$from=0,$to=0,$type,$int=1)
         {
-            switch ($int) {
+            switch ($type) {
                 case 'd':
+                    if ($int<=1) {
                     $ini = date('Y-m-d 00:00:00');
                     $fin = date('Y-m-d 23:59:59');
                     $travels = $this->getTravelClass($id_cliente,$ini,$fin);
                     return $travels;
+                    break;
+                    }
+                    else{
+                        $var = 1;
+                        $fechas = [];
+                        $tr=[];
+                        $j=0;
+                        while ($var<=$int){
+                            $stop_date = new DateTime();
+                            $stop_date->format('Y-m-d 00:00:00');
+                            $stop_date->modify('-'.$var.' day');
+                            $fechas[$var]['inicial'] =  $stop_date->format('Y-m-d 00:00:00');
+                            $fechas[$var]['final'] =  $stop_date->format('Y-m-d 23:59:00');
+                            $var++;
+                        }
+
+                        foreach ($fechas as $f) {
+                            $ini = $f['inicial'];
+                            $fin = $f['final'];
+                            $travels = $this->getTravelClass($id_cliente,$ini,$fin);
+                            $tr[$j]['periodo']=$ini.' / '.$fin;
+                            $tr[$j]['data']=$travels;
+                            $j++;
+                        }
+                        return $tr;
+                        break;
+
+                    }
+                    
                     break;
                 case 'm':
                     $month = $this->getMonth();
