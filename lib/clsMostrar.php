@@ -17,9 +17,16 @@ class mostrar extends Modelo
             $j=0;
             $k=0;
             $l=0;
+            $m=0;
             $result = $this->_conn->query($qr);
             while ($row = mysqli_fetch_assoc($result)) {
                 $id_act=$row['id_rutas_activas'];
+                $id_unidades=$row['id_unidad'];
+                $d[]=$id_unidades;
+                
+                //$m++;
+
+                
                 $qr2 ="SELECT * FROM tbl_valores_reales WHERE id_ruta = $id_act";
                 $r = $this->_conn->query($qr2);
                 //die(json_encode($rr));
@@ -46,12 +53,40 @@ class mostrar extends Modelo
                     $a['en_curso'][$l]['esperados']=$row;
                     $l++;
                 }
-                $a['c_a_tiempo']=count($a['a_tiempo']);
+                $a['c_a_tiempo']=count($a['a_tiempo']); 
                 $a['c_retrasados']=count($a['retrasados']);
                 $a['c_en_curso']=count($a['en_curso']);
+                $a['units']=$d;
+                
+
             }
             return $a;
         }
+        public function get_fleet_usage($id){
+            $data = [];
+            $qr="SELECT percent FROM tbl_uso_flota WHERE id_cliente = $id;";
+            $result = $this->_conn->query($qr);
+            $percent= mysqli_fetch_assoc($result);
+            $data['limit_percent']=$percent['percent'];
+
+            $cl="SELECT id_cliente FROM tbl_clienteplataforma WHERE id_login = $id;";
+            $rs = $this->_db->query($cl);
+            $id_plat= mysqli_fetch_assoc($rs);
+            $id_plataforma = $id_plat['id_cliente'];
+            $units = "SELECT * FROM tbl_unidades WHERE id_cliente = $id_plataforma AND id_status=0 order by id_unidad desc;";
+            $rss = $this->_db->query($units);
+            $countU= mysqli_num_rows($rss);
+            $unidades = [];
+            while ($row = mysqli_fetch_assoc($rss)) {
+                $unidades[]=$row;
+            }
+            $data['n_units']=$countU;
+            $data['unidades']=$unidades;
+            return $data;
+
+        }
+
+
         public function getUnitsData($id_cliente)
         {
           $qr = "SELECT * FROM tbl_clienteplataforma WHERE id_login = $id_cliente";
@@ -112,6 +147,10 @@ class mostrar extends Modelo
           $units['disponibles']= count($a)-$units['en_ruta'];
           $units['no_disponibles']=$nd;
 
+
+        
+          
+
           $units['percent_en_ruta']=($units['en_ruta']==0)?0:round($units['en_ruta']*100/$units['total'],2);
           
           $units['percent_disponibles']=round($units['disponibles']*100/$units['total'],2);
@@ -135,6 +174,15 @@ class mostrar extends Modelo
 
         }
 
+        function rangeWeek ($datestr) {
+            date_default_timezone_set (date_default_timezone_get());
+            $dt = $datestr;
+            return array (
+              "start" => date ('N', $dt) == 1 ? date ('Y-m-d 00:00:00', $dt) : date ('Y-m-d 00:00:00', strtotime ('last monday', $dt)),
+              "end" => date('N', $dt) == 7 ? date ('Y-m-d 23:59:59', $dt) : date ('Y-m-d 23:59:59', strtotime ('next sunday', $dt))
+            );
+          }
+
         public function getMonth()
         {
             $dt =time();
@@ -151,11 +199,16 @@ class mostrar extends Modelo
         {
             switch ($type) {
                 case 'd':
+                    $tr=[];
+                    $g=0;
                     if ($int<=1) {
                     $ini = date('Y-m-d 00:00:00');
                     $fin = date('Y-m-d 23:59:59');
                     $travels = $this->getTravelClass($id_cliente,$ini,$fin);
-                    return $travels;
+                    $tr[$g]['periodo']=$ini.' / '.$fin;
+                    $tr[$g]['data']=$travels;
+
+                    return $tr;
                     break;
                     }
                     else{
@@ -187,14 +240,77 @@ class mostrar extends Modelo
                     
                     break;
                 case 'm':
-                    $month = $this->getMonth();
-                    $travels = $this->getTravelClass($id_cliente,$month['start'],$month['end']);
-                    return $travels;
+                    if ($int<=1) {
+                        $tr=[];
+                        $g=0;
+                        $ini=date ('Y-m-d 00:00:00', strtotime ('first day of this month'));
+                        $fin=date ('Y-m-d 00:00:00', strtotime ('last day of this month'));
+                        $travels = $this->getTravelClass($id_cliente,$ini,$fin);
+                        $tr[$g]['periodo']=$ini.' / '.$fin;
+                        $tr[$g]['data']=$travels;
+                        return $tr;
+                    break;
+                    }else{
+                        $var = 1;
+                        $fechas = [];
+                        $tr=[];
+                        $j=0;
+                        $f=$int;
+                        $fecha = date('Y-m-d');
+                        $ranges=[];
+                        while($f>=0){
+                            $fe = "-$f month";	
+                            $nuevafecha = strtotime("$fe" , strtotime ($fecha));                            
+                            $ranges[]=array (
+                                "inicial" => date ('Y-m-d 00:00:00', strtotime ('first day of this month', $nuevafecha)),
+                                "final" => date ('Y-m-d 23:59:59', strtotime ('last day of this month', $nuevafecha))
+                            );
+                        $f=$f-1;
+                    }
+                }
+                foreach ($ranges as $f) {
+                    $ini = $f['inicial'];
+                    $fin = $f['final'];
+                    $travels = $this->getTravelClass($id_cliente,$ini,$fin);
+                    $tr[$j]['periodo']=$ini.' / '.$fin;
+                    $tr[$j]['data']=$travels;
+                    $j++;
+                    
+                }
+
+
+                //$usage=$this->get_fleet_usage($id_cliente);
+                //die (json_encode($usage));
+
+
+                return $tr;
                     break;
                 case 'w':
-                    $week=$this->get_week();
-                    $travels = $this->getTravelClass($id_cliente,$week['inicio'],$week['fin']);
-                    return $travels;
+
+                    $tr=[];
+                    $j=0;
+                    $f=$int;
+
+
+                    $f=$int;
+                    $semana=[];
+                    while($f>=1){
+                        $sem=$f*604800;
+                        $now=time()-$sem;
+                        //$date = strtotime($now);
+                        $semana[]= $this->rangeWeek($now);
+
+                        $f=$f-1;
+                    }
+                    foreach ($semana as $sem) {
+                        $ini=$sem['start'];
+                        $fin=$sem['end'];
+                        $travels = $this->getTravelClass($id_cliente,$ini,$fin); 
+                        $tr[$j]['periodo']=$ini.' / '.$fin;
+                        $tr[$j]['data']=$travels;
+                        $j++;
+                    }
+                    return $tr;
                     break;
                 case 'def':
                     $travels = $this->getTravelClass($id_cliente,$from,$to);

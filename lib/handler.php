@@ -4,10 +4,14 @@ $type = $_POST['type'];
 $ob = new mostrar();
 switch ($type) {
     case 0:
-        # code...
+        $units = $ob->getUnitsNumbers($_POST['cliente']);
+        echo json_encode($units);
         break;
     case 1:
-        # code...
+        $dates = $ob->getMonth();
+        //die(json_encode($dates));
+        $travels = $ob->getTravelClass($_POST['cliente'],$dates['start'],$dates['end']);
+        echo json_encode($travels);
         break;
     case 2:
         # code...
