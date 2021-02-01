@@ -2,8 +2,8 @@
    require_once('clsMostrar.php');
    $cl = new mostrar();
    
-   /* $travels = $cl->getTravelClass(10142,'2020-08-14 07:25:11','2021-01-29 07:25:11');
-   echo json_encode($travels); */
+   $travels = $cl->getTravelClass(10142,'2020-08-14 07:25:11','2021-01-29 07:25:11');
+   echo json_encode($travels);
 
    
 
@@ -18,8 +18,8 @@
 
     /* estadísticas de rutas por dia, semana, mes e intérvalo definido */
 
-    $statistics = $cl->getStatics(10142,0,0,'m',3);
-    echo json_encode($statistics);
+    /* $statistics = $cl->getStatics(10142,0,0,'m',3);
+    echo json_encode($statistics); */
 
     /* funcion para sacar el porcentaje de uso de flotilla establecido por el usuario */
 

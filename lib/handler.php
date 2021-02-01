@@ -10,7 +10,8 @@ switch ($type) {
     case 1:
         $dates = $ob->getMonth();
         //die(json_encode($dates));
-        $travels = $ob->getTravelClass($_POST['cliente'],$dates['start'],$dates['end']);
+        //$travels = $ob->getTravelClass($_POST['cliente'],$dates['start'],$dates['end']);
+        $travels = $ob->getTravelClass($_POST['cliente'],'2020-08-14 07:25:11',$dates['end']);
         echo json_encode($travels);
         break;
     case 2:

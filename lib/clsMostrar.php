@@ -9,7 +9,7 @@ class mostrar extends Modelo
     {
         public function getTravelClass($id_cliente,$from,$to)
         {
-            $qr = "SELECT * FROM tbl_rutas_activas WHERE fecha_fin between '$from' AND '$to' AND id_creador = $id_cliente";
+            $qr = "SELECT u.nombre as nombre_unidad,u.imagen as imagen_unidad,ra.* FROM tbl_rutas_activas ra INNER JOIN cydsacoc_sitio.tbl_unidades u ON ra.id_unidad = u.id_unidad WHERE fecha_fin between '$from' AND '$to' AND id_creador = $id_cliente";
             //die($qr);
             $a=[];
             $d=[];
