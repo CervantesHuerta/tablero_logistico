@@ -453,25 +453,74 @@ function modalAnalisisBLINT(jerarquia,idUsuario)
       success:function(data_rutas){
         var data_rutas = JSON.parse(data_rutas);
 
-        for (let i = 0; i < data_rutas['retrasados'].length; i++) {
-          if (i==0) {
-            var ret='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Fll class=col-md-6 style="padding-top:8px;">RETRASADOS</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group>';
+
+        if (typeof data_rutas['retrasados'] !== 'undefined') {
+          // your code here
+          for (let i = 0; i < data_rutas['retrasados'].length; i++) {
+            if (i==0) {
+              var ret='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Fd class=col-md-6 style="padding-top:8px;">RETRASADOS</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group>';
+            }
+            ret+='<div class=list-group-item data-type=1 data-id='+data_rutas['retrasados'][i].esperados.id_unidad+'><div class=unidad><div class="uni-columna uni-columna-1"><img src="https://hst-api.wialon.com'+data_rutas['retrasados'][i].esperados.imagen_unidad+'?b=30" style="max-width:30px;max-height:30px;"></div><div class="uni-columna uni-columna-2" style="padding-left: 12px;"><div class=nm_unidad>'+data_rutas['retrasados'][i].esperados.nombre_unidad+'</div><div class=uni_telefono>123456789</div></div><div class="uni-columna uni-columna-3"><div class="col-sm-12 green-icon"><i class="material-icons dp48">my_location</i> <i style="float:right;" class="material-icons dp48">location_on</i></div><div class="col-sm-12"><div class="progress "><div class="progress-bar" style="width:0%;"><div class="progress-value"> 0% <br><i class="material-icons dp48">local_shipping</i></div></div></div></div></div></div></div>';
+            if (i==data_rutas['retrasados'].lenght) {
+              ret=+'</div></div></div>';            
+            }
           }
-          ret+='<div class=list-group-item data-type=1 data-id='+data_rutas['retrasados'][i].esperados.id_unidad+'><div class=unidad><div class="uni-columna uni-columna-1"><img src="https://hst-api.wialon.com'+data_rutas['retrasados'][i].esperados.imagen_unidad+'?b=30" style="max-width:30px;max-height:30px;"></div><div class="uni-columna uni-columna-2"><div class=nm_unidad>'+data_rutas['retrasados'][i].esperados.nombre_unidad+'</div><div class=uni_telefono>123456789</div></div><div class="uni-columna uni-columna-3"><div class=alertas><i class="fntll fntll-gps" data-toggle=tooltip style="color:#ddd;" data-placement=bottom title="" data-original-title=Satelites></i><i class="fntll fntll-ignition" data-toggle=tooltip style="color:#ddd;" data-placement=bottom title="" data-original-title="Tiempo sin reportar"></i></div><div class=tiempo></div></div></div></div>';
-          if (i==data_rutas['retrasados'].lenght) {
-            ret=+'</div></div></div>';            
-          }
+        }else{
+          ret='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Fd class=col-md-6 style="padding-top:8px;">RETRASADOS</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group><br><br>SIN DATOS';
         }
 
-        for (let i = 0; i < data_rutas['a_tiempo'].length; i++) {
-          if (i==0) {
-            var a_tiempo='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Op class=col-md-6 style="padding-top:8px;">A TIEMPO</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group>';
+
+        if (typeof data_rutas['a_tiempo'] !== 'undefined') {
+
+          for (let i = 0; i < data_rutas['a_tiempo'].length; i++) {
+            if (i==0) {
+              var a_tiempo='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Op class=col-md-6 style="padding-top:8px;">A TIEMPO</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group>';
+            }
+            a_tiempo+='<div class=list-group-item data-type=1 data-id='+data_rutas['a_tiempo'][i].esperados.id_unidad+'><div class=unidad><div class="uni-columna uni-columna-1"><img src="https://hst-api.wialon.com'+data_rutas['a_tiempo'][i].esperados.imagen_unidad+'?b=30" style="max-width:30px;max-height:30px;"></div><div class="uni-columna uni-columna-2" style="padding-left: 12px;"><div class=nm_unidad>'+data_rutas['a_tiempo'][i].esperados.nombre_unidad+'</div><div class=uni_telefono>123456789</div></div><div class="uni-columna uni-columna-3"><div class=alertas><i class="fntll fntll-gps" data-toggle=tooltip style="color:#ddd;" data-placement=bottom title="" data-original-title=Satelites></i><i class="fntll fntll-ignition" data-toggle=tooltip style="color:#ddd;" data-placement=bottom title="" data-original-title="Tiempo sin reportar"></i></div><div class=tiempo></div></div></div></div>';
+            if (i==data_rutas['a_tiempo'].lenght) {
+              a_tiempo=+'</div></div></div>';            
+            }
           }
-          a_tiempo+='<div class=list-group-item data-type=1 data-id='+data_rutas['a_tiempo'][i].esperados.id_unidad+'><div class=unidad><div class="uni-columna uni-columna-1"><img src="https://hst-api.wialon.com'+data_rutas['a_tiempo'][i].esperados.imagen_unidad+'?b=30" style="max-width:30px;max-height:30px;"></div><div class="uni-columna uni-columna-2"><div class=nm_unidad>'+data_rutas['a_tiempo'][i].esperados.nombre_unidad+'</div><div class=uni_telefono>123456789</div></div><div class="uni-columna uni-columna-3"><div class=alertas><i class="fntll fntll-gps" data-toggle=tooltip style="color:#ddd;" data-placement=bottom title="" data-original-title=Satelites></i><i class="fntll fntll-ignition" data-toggle=tooltip style="color:#ddd;" data-placement=bottom title="" data-original-title="Tiempo sin reportar"></i></div><div class=tiempo></div></div></div></div>';
-          if (i==data_rutas['a_tiempo'].lenght) {
-            a_tiempo=+'</div></div></div>';            
-          }
+
+        }else{
+          a_tiempo='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Op class=col-md-6 style="padding-top:8px;">A TIEMPO</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group><br><br>SIN DATOS';
         }
+        
+
+        if (typeof data_rutas['en_espera'] !== 'undefined') {
+
+          for (let i = 0; i < data_rutas['en_espera'].length; i++) {
+            if (i==0) {
+              var en_espera='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Au class=col-md-6 style="padding-top:8px; color:#b3d0e4;">EN ESPERA</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group>';
+            }
+            en_espera+='<div class=list-group-item data-type=1 data-id='+data_rutas['en_espera'][i].esperados.id_unidad+'><div class=unidad><div class="uni-columna uni-columna-1"><img src="https://hst-api.wialon.com'+data_rutas['en_espera'][i].esperados.imagen_unidad+'?b=30" style="max-width:30px;max-height:30px;"></div><div class="uni-columna uni-columna-2" style="padding-left: 12px;"><div class=nm_unidad>'+data_rutas['en_espera'][i].esperados.nombre_unidad+'</div><div class=uni_telefono>123456789</div></div><div class="uni-columna uni-columna-3"><div class=alertas><i class="fntll fntll-gps" data-toggle=tooltip style="color:#ddd;" data-placement=bottom title="" data-original-title=Satelites></i><i class="fntll fntll-ignition" data-toggle=tooltip style="color:#ddd;" data-placement=bottom title="" data-original-title="Tiempo sin reportar"></i></div><div class=tiempo></div></div></div></div>';
+            if (i==data_rutas['en_espera'].lenght) {
+              en_espera=+'</div></div></div>';            
+            }
+          }
+
+        }else{
+          en_espera='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Au class=col-md-6 style="padding-top:8px;color:#b3d0e4;">EN ESPERA</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group><br><br>SIN DATOS';
+        }
+
+
+        if (typeof data_rutas['tarde'] !== 'undefined') {
+
+          for (let i = 0; i < data_rutas['tarde'].length; i++) {
+            if (i==0) {
+              var tarde='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Fll class=col-md-6 style="padding-top:8px;">TARDE</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group>';
+            }
+            tarde+='<div class=list-group-item data-type=1 data-id='+data_rutas['tarde'][i].esperados.id_unidad+'><div class=unidad><div class="uni-columna uni-columna-1"><img src="https://hst-api.wialon.com'+data_rutas['tarde'][i].esperados.imagen_unidad+'?b=30" style="max-width:30px;max-height:30px;"></div><div class="uni-columna uni-columna-2" style="padding-left: 12px;"><div class=nm_unidad>'+data_rutas['tarde'][i].esperados.nombre_unidad+'</div><div class=uni_telefono>123456789</div></div><div class="uni-columna uni-columna-3"><div class="col-sm-12 green-icon"><i class="material-icons dp48">my_location</i> <i style="float:right;" class="material-icons dp48">location_on</i></div></div>';
+            if (i==data_rutas['tarde'].lenght) {
+              tarde=+'</div></div></div>';            
+            }
+          }
+
+        }else{
+          tarde='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Fll class=col-md-6 style="padding-top:8px;">TARDE</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group><br><br>SIN DATOS';
+        }
+
+
 
 
 
@@ -480,9 +529,9 @@ function modalAnalisisBLINT(jerarquia,idUsuario)
         
         $('#a_tiempo').html(a_tiempo);
         
-        $('#tarde').html('');
+        $('#tarde').html(tarde);
         
-        $('#on_hold').html('');
+        $('#on_hold').html(en_espera);
 
       }
     });

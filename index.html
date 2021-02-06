@@ -32,13 +32,181 @@
 	    <link href="https://sitio.saktesi.com/profile/assets/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css" />
 	    <link href="https://sitio.saktesi.com/profile/assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css" />
 	    <link href="https://sitio.saktesi.com/profile/assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css" />
-	    <link href="https://sitio.saktesi.com/profile/assets/css/customDiag.css" rel="stylesheet" type="text/css" />
+	    <link href="assets/css/customDiag.css" rel="stylesheet" type="text/css" />
 	    <link href="https://sitio.saktesi.com/profile/assets/css/carga.css" rel="stylesheet" type="text/css" />
 	    <link href="https://sitio.saktesi.com/profile/assets/css/fontello-diag/css/combustible-icon.css" rel="stylesheet" type="text/css" />
 	    <link href="https://sitio.saktesi.com/profile/assets/css/fontello-diag/css/combustible-icon.css" rel="stylesheet" type="text/css" />
 	    <link href="https://sitio.saktesi.com/profile/assets/css/themes/white.css" rel="stylesheet" type="text/css" />
 	    <link href="https://sitio.saktesi.com/profile/assets/css/notify.css" rel="stylesheet" type="text/css" />
-	    <link href="https://sitio.saktesi.com/profile/assets/css/notify.css" rel="stylesheet" type="text/css" />
+        <link href="https://sitio.saktesi.com/profile/assets/css/notify.css" rel="stylesheet" type="text/css" />
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+        
+<style>
+    .bg-black {
+        background-color: rgba(0, 0, 0, .8) !important;
+        color: #fff;
+    }
+
+    [data-notify="progressbar"] {
+        margin-bottom: 0px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        height: 5px;
+    }
+
+    .title-caret {
+        list-style: none
+    }
+
+
+    .progress .progress-value {
+			display: block;
+			font-size: 18px;
+			font-weight: bold;
+			color: #690965;
+			position: absolute;
+			top: -30px;
+			right: -10px;
+		}
+
+		.progress {
+
+			overflow: visible;
+
+		}
+
+		.progress {
+			background-color: #cececd !important;
+			height: 14px !important;
+			margin-bottom: 10px
+		}
+
+		.green-icon i {
+			color: #5a8a2f;
+            font-size: 13px;
+		}
+
+		#modal2 {
+			top: 0px !important;
+			max-height: 85%;
+		}
+
+		#modal2 .modal-content {
+			height: 93%;
+			max-height: none;
+			min-height: none;
+		}
+
+		#modalKill {
+			top: 0px !important;
+			max-height: 20%;
+			max-width: 60%;
+		}
+
+		#modalKill .modal-content {
+			height: 25%;
+			max-height: none;
+			min-height: none;
+		}
+
+		#modalKill a {
+		    color: white;
+		}
+
+		.cd-timeline-img {
+			top: 10px !important;
+			color: #5a8a2f;
+		}
+
+		.cd-timeline-content {
+
+			padding-left: 0px;
+		}
+
+		.cd-timeline-content .col-sm-8 {
+			padding-left: 0px;
+		}
+
+		.green_icon {
+			color: #5a8a2f;
+		}
+
+		.cd-timeline-block:last-child .cd-timeline-content p {
+			font-weight: bold;
+			font-size: large;
+		}
+
+		#cd-timeline::before {
+			border: 1px dashed #5a8a2f;
+			background: #fff !important;
+			left: 11.9% !important;
+		}
+
+		.progress .progress-bar {
+			position: relative;
+			-webkit-animation: animate-positive 2s;
+			animation: animate-positive 2s;
+			background-color: #5a8a2f !important;
+			height: 14px !important;
+		}
+
+
+		.progress .progress-value {
+			display: block;
+			font-size: 14px;
+			font-weight: bold;
+			color: #690965;
+			position: absolute;
+			top: -30px;
+			right: -10px;
+		}
+
+		.progress.green .progress-bar,
+		.progress.green .progress-bar:after {
+			background: #008000;
+		}
+
+		.progress.blue .progress-bar,
+		.progress.blue .progress-bar:after {
+			background: #25a9ff;
+		}
+
+		.progress.yellow .progress-bar,
+		.progress.yellow .progress-bar:after {
+			background: #ff9f1c;
+		}
+
+		.progress.pink .progress-bar,
+		.progress.pink .progress-bar:after {
+			background: #e71d36;
+		}
+
+		@-webkit-keyframes animate-positive {
+			0% {
+				width: 0%;
+			}
+		}
+
+		@keyframes animate-positive {
+			0% {
+				width: 0%;
+			}
+		}
+
+		@media (min-width:996px) {
+
+
+			#datos-modal-detalles .col-md-6 {
+
+				max-width: 50%;
+			}
+		}
+
+</style>
 
 
 
@@ -197,33 +365,6 @@
                     <!-- iniciq segundo row -->
 
 
-
-
-                    <!-- <div class="row" id="panel de rutas" >
-                        <div class="col-md-offset-1 col-md-10">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="row">
-                                        <div class="col-lg-3 panel panel-white">
-                                            <div class="panel-body" id="a_tiempo"></div>
-                                        </div>                                        
-                                        <div class="col-lg-3 panel panel-white">
-                                            <div class="panel-body" id="retrasados"></div>
-                                        </div>
-                                        <div class="col-lg-3 panel panel-white">
-                                            <div class="panel-body" id="tarde"></div>
-                                        </div>
-                                        <div class="col-lg-3 panel panel-white">
-                                            <div class="panel-body" id="on_hold"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                                                      
-					</div>
-                    </div> -->
-
                     <div class="col-lg-3 col-md-3">
                         <div>
                             <div class="" id="a_tiempo">                                
@@ -249,8 +390,8 @@
 
 
                     <div class="col-lg-3 col-md-3">
-                        <div class="panel panel-white">
-                            <div class="panel-body" id="tarde">
+                        <div>
+                            <div id="tarde">
                                 <div style="text-align:center;">
                                     <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br>
                                     <strong style="color: #690965;">Cargando...</strong>
@@ -261,8 +402,8 @@
 
 
                     <div class="col-lg-3 col-md-3">
-                        <div class="panel panel-white">
-                            <div class="panel-body" id="on_hold">
+                        <div>
+                            <div id="on_hold">
                                 <div style="text-align:center;">
                                     <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br>
                                     <strong style="color: #690965;">Cargando...</strong>
@@ -381,6 +522,8 @@
 		<script src="https://sitio.saktesi.com/profile/assets/plugins/waypoints/jquery.waypoints.min.js"></script>
 		<script src="https://sitio.saktesi.com/profile/assets/plugins/Sortable/Sortable.min.js"></script>
         <script src="https://sitio.saktesi.com/profile/assets/plugins/jquery-inview/jquery.inview.min.js"></script>
+        <script src="https://sitio.saktesi.com/profile/assets/plugins/sticky/jquery.sticky.js"></script>
+	<script src="https://sitio.saktesi.com/profile/assets/js/bootstrap-notify.js"></script>
         
         <script>
             function altoViewPort(params) {
