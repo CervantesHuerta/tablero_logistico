@@ -435,17 +435,25 @@ function modalAnalisisBLINT(jerarquia,idUsuario)
           { title: "Unidades Disponibles", value: data['disponibles'], color: "#a53f90", value2:data['percent_disponibles']},
           { title: "Unidades no Disponibles", value: data['no_disponibles'], color: "#a0a09f",value2:data['percent_no_disponibles']}
         ]);
+
         let numbers='<h2 >Unidades en ruta</h2><br><h2 style="margin-top: -20px; color: #702061; -webkit-text-stroke: medium; margin-bottom: -20px;">'+data['en_ruta']+'</h2><br><h2 >Unidades disponibles</h2><br><h2 style="margin-top: -20px; color: #a53f90; -webkit-text-stroke: medium; margin-bottom: -20px;">'+data['disponibles']+'</h2><br><h2 >Unidades no disponibles</h2><br><h2 style="margin-top: -20px; color: #a0a09f; -webkit-text-stroke: medium; margin-bottom: -20px;">'+data['no_disponibles']+'</h2><br>';
         $('#loader_fastlane').hide();
         $('#fast-data').addClass('animate__fadeIn');
         $("#numbers").append(numbers);
         $("#graphDetail").append('<i class="fa fa-area-chart" style="cursor:pointer"  data-toggle="modal" data-target="#statistics"></i>');
         $("#logo_cliente").append('<img class="img-responsive center-block" style="margin-top: 20%;" src="assets/images/logo_tracusa.png">');
+        
+        
 
       }
 
     });
+
+    $('#statistics').on('shown.bs.modal', function (e) {
+     $('#datos_estadisticos').html('<div class="row" id="barras"><div class="col-md-12 col-lg-12><div class="row"><div class="col-lg-12 col-md-12"><div class="panel panel-white"><div class="panel-body"><div style="text-align:center;" id="loader_fastlane"> <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br> <strong style="color: #690965;">Cargando...</strong></div><div class="row animate__animated" id="fast-data"><div class="col-lg-4" id="logo_cliente"></div><div class="col-lg-4"><div id="doughnutChart" class="chart"></div></div><div class="col-lg-4"><div class="iconia" style="text-align: right;" id="graphDetail"></div><div id="numbers"></div></div></div></div></div></div></div></div></div><div class="col-lg-8 col-md-8"><div><div class="" id="columna_limite_uso"><div style="text-align:center;"> <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br> <strong style="color: #690965;">Cargando...</strong></div></div></div></div><div class="col-lg-4 col-md-4"><div class="row"><div><div class="" id="retrasados"><div style="text-align:center;"> <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br> <strong style="color: #690965;">Cargando...</strong></div></div></div></div><div class="row"><div><div class="" id="retrasados"><div style="text-align:center;"> <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br> <strong style="color: #690965;">Cargando...</strong></div></div></div></div></div><div class="row" id="incidencias"><div class="col-md-offset-1 col-md-10"><div class="row"><div class="col-lg-12 col-md-12"><div class="panel info-box panel-white"><div class="panel-body"><div class="info-box-stats" style="max-width:70%;"> <span class="counter">2793</span><span class="font-size:24px;">/</span> <span class="counter">2855</span> <span style="height:100%;" class="info-box-title">Total Unidades/Total Contratadas </span></div><div class="info-box-icon" style="text-align: right;"> <i class="fa fa-truck"></i><br> <b>Disponibles:62</b></div><div class="info-box-progress"><div class="progress progress-xs progress-squared bs-n"><div class="progress-bar progress-bar-success" title="2793 unidades de 2855 contratadas" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 97.828371278459%"></div></div></div></div></div></div></div></div></div>');
+    })
     
+    //<script>$("#statistics").on("click",function(){$("#datos_estadisticos").html("hola") });</script>
     $.ajax({
       url:"lib/handler.php",
       data:{type:1,cliente:10142},
@@ -458,15 +466,15 @@ function modalAnalisisBLINT(jerarquia,idUsuario)
           // your code here
           for (let i = 0; i < data_rutas['retrasados'].length; i++) {
             if (i==0) {
-              var ret='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Fd class=col-md-6 style="padding-top:8px;">RETRASADOS</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group>';
+              var ret='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Au class=col-md-6 style="padding-top:8px;">RETRASADOS</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group>';
             }
-            ret+='<div class=list-group-item data-type=1 data-id='+data_rutas['retrasados'][i].esperados.id_unidad+'><div class=unidad><div class="uni-columna uni-columna-1"><img src="https://hst-api.wialon.com'+data_rutas['retrasados'][i].esperados.imagen_unidad+'?b=30" style="max-width:30px;max-height:30px;"></div><div class="uni-columna uni-columna-2" style="padding-left: 12px;"><div class=nm_unidad>'+data_rutas['retrasados'][i].esperados.nombre_unidad+'</div><div class=uni_telefono>123456789</div></div><div class="uni-columna uni-columna-3"><div class="col-sm-12 green-icon"><i class="material-icons dp48">my_location</i> <i style="float:right;" class="material-icons dp48">location_on</i></div><div class="col-sm-12"><div class="progress "><div class="progress-bar" style="width:0%;"><div class="progress-value"> 0% <br><i class="material-icons dp48">local_shipping</i></div></div></div></div></div></div></div>';
+            ret+='<div class=list-group-item data-type=1 data-id='+data_rutas['retrasados'][i].esperados.id_unidad+'><div class=unidad><div class="uni-columna uni-columna-1"><img src="https://hst-api.wialon.com'+data_rutas['retrasados'][i].esperados.imagen_unidad+'?b=30" style="max-width:30px;max-height:30px;"></div><div class="uni-columna uni-columna-2" style="padding-left: 12px;"><div class=nm_unidad>'+data_rutas['retrasados'][i].esperados.nombre_unidad+'</div><div class=uni_telefono>123456789</div></div><div class="uni-columna uni-columna-3"><div class="col-sm-12 green-icon"><i class="material-icons dp48">my_location</i> <i style="float:right;" class="material-icons dp48">location_on</i></div><div class="col-sm-12"><div class="progress "><div class="progress-bar" style="width:100%;"><div class="progress-value"> 100% <br><i class="material-icons dp48">local_shipping</i></div></div></div></div></div></div></div>';
             if (i==data_rutas['retrasados'].lenght) {
               ret=+'</div></div></div>';            
             }
           }
         }else{
-          ret='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Fd class=col-md-6 style="padding-top:8px;">RETRASADOS</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group><br><br>SIN DATOS';
+          ret='<div class=panel><div class=panel-heading><h4><div class=row><div class=col-sm-12><div id=title-Au class=col-md-6 style="padding-top:8px;">RETRASADOS</div><div class="input-group m-b-sm col-md-6"><input type=text name=srch1 id=srch1 class="form-control busquedas" placeholder="Buscar..."><span class=input-group-addon><i class="fa fa-search" aria-hidden=true></i></span></div></div></div></h4></div><div class="panel-body panel-columnas" style="height:600px;max-height:600px;"><div id=unts_bien class=list-group><br><br>SIN DATOS';
         }
 
 
